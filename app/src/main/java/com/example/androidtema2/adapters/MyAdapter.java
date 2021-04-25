@@ -149,7 +149,6 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
     }
 
-
     class AlbumViewHolder extends RecyclerView.ViewHolder {
         private final TextView albumId;
         private final TextView body;

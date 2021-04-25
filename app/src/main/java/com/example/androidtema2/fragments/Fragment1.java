@@ -46,7 +46,6 @@ public class Fragment1 extends Fragment implements OnItemClickListener {
     private MyAdapter myAdapter = null;
     private SwipeRefreshLayout swipeRefreshLayout;
 
-
     public Fragment1() {
         // Required empty public constructor
     }
@@ -59,7 +58,6 @@ public class Fragment1 extends Fragment implements OnItemClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         view = inflater.inflate(R.layout.fragment_1, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.artist_list);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(view.getContext(), RecyclerView.VERTICAL, false);
@@ -75,7 +73,6 @@ public class Fragment1 extends Fragment implements OnItemClickListener {
             getUserDetails();
             swipeRefreshLayout.setRefreshing(false);
         });
-
         return view;
     }
 
@@ -133,7 +130,7 @@ public class Fragment1 extends Fragment implements OnItemClickListener {
         queue.add(getPostsRequest);
     }
 
-    synchronized void handlePostsResponse(String response) throws JSONException {
+    void handlePostsResponse(String response) throws JSONException {
         JSONArray postsJSONArray = new JSONArray(response);
         for (int index = 0; index < postsJSONArray.length(); ++index) {
             JSONObject userPostJSON = (JSONObject) postsJSONArray.get(index);

@@ -94,7 +94,6 @@ public class Fragment3 extends Fragment {
             String thumbnailUrl = userPostJSON.getString("thumbnailUrl");
             Image image = new Image(id, title, url, thumbnailUrl);
             this.elementList.add(image);
-
         }
         myAdapter.notifyDataSetChanged();
     }

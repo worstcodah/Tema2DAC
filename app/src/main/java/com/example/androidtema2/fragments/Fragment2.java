@@ -87,7 +87,6 @@ public class Fragment2 extends Fragment implements OnItemClickListener {
         return view;
     }
 
-
     void getAlbums() {
         RequestQueue queue = Volley.newRequestQueue(Objects.requireNonNull(view.getContext()));
         String url = Constants.BASE_URL + "/albums?" + Constants.USER_ID + "=" + currentUser.getId();
