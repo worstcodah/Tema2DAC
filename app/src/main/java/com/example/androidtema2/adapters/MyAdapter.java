@@ -112,21 +112,21 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
 
 
-        void bind(User artist) {
-            name.setText(artist.getName());
-            username.setText(artist.getUsername());
-            email.setText(artist.getEmail());
+        void bind(User user) {
+            name.setText(user.getName());
+            username.setText(user.getUsername());
+            email.setText(user.getEmail());
             imageButton.setOnClickListener(
                     v -> {
                         if (onItemClickListener != null) {
-                            onItemClickListener.onImageClick(artist);
+                            onItemClickListener.onImageClick(user);
                             notifyItemChanged(getAdapterPosition());
                         }
                     });
 
             view.setOnClickListener(v -> {
                 if (onItemClickListener != null) {
-                    onItemClickListener.onItemClick(artist);
+                    onItemClickListener.onItemClick(user);
                     notifyItemChanged(getAdapterPosition());
                 }
             });

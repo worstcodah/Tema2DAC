@@ -42,12 +42,12 @@ public class User extends Element {
         return email;
     }
 
-    public boolean isExpandPosts() {
+    public boolean hasExpandedPosts() {
         return expandPosts;
     }
 
-    public void setExpandPosts(boolean expandPost) {
-        this.expandPosts = expandPost;
+    public void setExpandedPosts(boolean expandPosts) {
+        this.expandPosts = expandPosts;
     }
 
     @Override

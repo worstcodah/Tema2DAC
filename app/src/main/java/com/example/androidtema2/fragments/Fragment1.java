@@ -13,7 +13,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -139,6 +138,7 @@ public class Fragment1 extends Fragment implements OnItemClickListener {
             String title = userPostJSON.getString("title");
             String body = userPostJSON.getString("body");
             Post newPost = new Post(userId, id, title, body);
+            //Fara dubluri (override equals si hashcode)
             if (!posts.contains(newPost)) {
                 posts.add(newPost);
             }
@@ -174,11 +174,12 @@ public class Fragment1 extends Fragment implements OnItemClickListener {
     }
 
     private void reorderElements() {
+        //Previne suprapunerea posturilor.
         ArrayList<Element> reorderedElements = new ArrayList<>();
         for (Element element : elementList) {
             if (element instanceof User) {
                 reorderedElements.add(element);
-                if (((User) element).isExpandPosts()) {
+                if (((User) element).hasExpandedPosts()) {
                     for (Post post : posts) {
                         if (((User) element).getId() == post.getUserId()) {
                             reorderedElements.add(post);
@@ -199,12 +200,12 @@ public class Fragment1 extends Fragment implements OnItemClickListener {
     @Override
     public void onImageClick(User user) {
         getPosts(user);
-        if (!user.isExpandPosts()) {
-            user.setExpandPosts(true);
+        if (!user.hasExpandedPosts()) {
+            user.setExpandedPosts(true);
             reorderElements();
             myAdapter.notifyDataSetChanged();
         } else {
-            user.setExpandPosts(false);
+            user.setExpandedPosts(false);
             deletePosts(user);
         }
     }
