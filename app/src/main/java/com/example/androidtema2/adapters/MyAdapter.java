@@ -151,17 +151,20 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
     class AlbumViewHolder extends RecyclerView.ViewHolder {
+        private final TextView albumId;
         private final TextView body;
         private final View view;
 
         public AlbumViewHolder(@NonNull View view) {
             super(view);
             body = view.findViewById(R.id.album_body);
+            albumId = view.findViewById(R.id.album_id);
             this.view = view;
         }
 
         public void bind(Album album) {
             body.setText(album.getBody());
+            albumId.setText(String.valueOf(album.getId()));
             view.setOnClickListener(v -> onItemClickListener.onItemClick(album));
         }
     }

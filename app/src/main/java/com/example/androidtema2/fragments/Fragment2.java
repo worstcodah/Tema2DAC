@@ -20,6 +20,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.androidtema2.R;
 import com.example.androidtema2.adapters.MyAdapter;
+import com.example.androidtema2.constants.Constants;
 import com.example.androidtema2.interfaces.ActivityFragmentCommunication;
 import com.example.androidtema2.interfaces.OnItemClickListener;
 import com.example.androidtema2.models.Album;
@@ -41,6 +42,7 @@ public class Fragment2 extends Fragment implements OnItemClickListener {
     private ArrayList<Element> elementList = new ArrayList<>();
     private MyAdapter myAdapter = null;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private View view;
 
     public Fragment2() {
         // Required empty public constructor
@@ -67,7 +69,7 @@ public class Fragment2 extends Fragment implements OnItemClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_2, container, false);
+        view = inflater.inflate(R.layout.fragment_2, container, false);
 
         RecyclerView recyclerView = view.findViewById(R.id.album_list);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(view.getContext(), RecyclerView.VERTICAL, false);
@@ -87,9 +89,8 @@ public class Fragment2 extends Fragment implements OnItemClickListener {
 
 
     void getAlbums() {
-        RequestQueue queue = Volley.newRequestQueue(Objects.requireNonNull(getContext()));
-        String url = "https://jsonplaceholder.typicode.com/users";
-        url += "/" + currentUser.getId() + "/albums";
+        RequestQueue queue = Volley.newRequestQueue(Objects.requireNonNull(view.getContext()));
+        String url = Constants.BASE_URL + "/albums?" + Constants.USER_ID + "=" + currentUser.getId();
 
         StringRequest getAlbumsRequest = new StringRequest(
                 Request.Method.GET,
@@ -107,7 +108,6 @@ public class Fragment2 extends Fragment implements OnItemClickListener {
     }
 
     void handleAlbumResponse(String response) throws JSONException {
-        elementList.clear();
         JSONArray albumJSONArray = new JSONArray(response);
         for (int index = 0; index < albumJSONArray.length(); ++index) {
             JSONObject userPostJSON = (JSONObject) albumJSONArray.get(index);
@@ -116,8 +116,7 @@ public class Fragment2 extends Fragment implements OnItemClickListener {
                 int id = userPostJSON.getInt("id");
                 String title = userPostJSON.getString("title");
                 Album album = new Album(id, title);
-                if (!elementList.contains(album))
-                    this.elementList.add(album);
+                this.elementList.add(album);
             }
         }
         myAdapter.notifyDataSetChanged();
