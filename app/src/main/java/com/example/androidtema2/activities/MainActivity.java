@@ -14,10 +14,8 @@ import com.example.androidtema2.interfaces.ActivityFragmentCommunication;
 import com.example.androidtema2.models.Element;
 
 public class MainActivity extends AppCompatActivity implements ActivityFragmentCommunication {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         openFragment1();
@@ -32,9 +30,7 @@ public class MainActivity extends AppCompatActivity implements ActivityFragmentC
         FragmentTransaction addTransaction = transaction.add(
                 R.id.frame_layout, fragment1, tag
         );
-
         addTransaction.commit();
-
     }
 
     @Override
@@ -46,7 +42,6 @@ public class MainActivity extends AppCompatActivity implements ActivityFragmentC
         FragmentTransaction addTransaction = transaction.replace(
                 R.id.frame_layout, fragment2, tag
         );
-
         addTransaction.commit();
     }
 
@@ -59,7 +54,6 @@ public class MainActivity extends AppCompatActivity implements ActivityFragmentC
         FragmentTransaction addTransaction = transaction.replace(
                 R.id.frame_layout, fragment3, tag
         );
-
         addTransaction.commit();
     }
 }

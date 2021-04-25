@@ -30,8 +30,6 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Fragment3 extends Fragment {
-
-
     private Album currentAlbum;
     private ArrayList<Element> elementList = new ArrayList<>();
     private MyAdapter myAdapter = null;

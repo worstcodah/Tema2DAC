@@ -36,7 +36,6 @@ import java.util.Objects;
 
 
 public class Fragment2 extends Fragment implements OnItemClickListener {
-
     private ActivityFragmentCommunication activityFragmentCommunication;
     private User currentUser;
     private ArrayList<Element> elementList = new ArrayList<>();

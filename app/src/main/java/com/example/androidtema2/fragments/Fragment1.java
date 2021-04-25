@@ -37,7 +37,6 @@ import java.util.Stack;
 
 
 public class Fragment1 extends Fragment implements OnItemClickListener {
-
     private ActivityFragmentCommunication activityFragmentCommunication;
     private View view;
     private ArrayList<Element> elementList = new ArrayList<>();
@@ -124,7 +123,6 @@ public class Fragment1 extends Fragment implements OnItemClickListener {
                 "ERROR: get posts failed with error: " + error.getMessage(),
                 Toast.LENGTH_SHORT
         ).show()
-
         );
         queue.add(getPostsRequest);
     }
